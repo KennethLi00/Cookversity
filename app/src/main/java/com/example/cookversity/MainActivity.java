@@ -38,10 +38,19 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("n");
                     return true;
                 case R.id.miMealPrep:
+                    f = new MealPrepFragment();
+                    loadFragment(f);
+                    System.out.println("mp");
                     return true;
                 case R.id.miCookbook:
+                    f = new CookbookFragment();
+                    loadFragment(f);
+                    System.out.println("cb");
                     return true;
                 case R.id.miQuizzes:
+                    f = new QuizFragment();
+                    loadFragment(f);
+                    System.out.println("q");
                     return true;
             }
             return false;
