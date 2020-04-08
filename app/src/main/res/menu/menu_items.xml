@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/miHome"
+        android:title="Home" />
+    <item
         android:id="@+id/miRecipes"
         android:icon="@color/colorAccent"
         android:title="Recipes" />
@@ -10,10 +13,6 @@
         android:id="@+id/miNutrition"
         android:icon="@color/design_default_color_secondary"
         android:title="Nutrition" />
-    <item
-        android:id="@+id/miMealPrep"
-        android:icon="@color/design_default_color_primary"
-        android:title="Meal Prep" />
     <item
         android:id="@+id/miCookbook"
         android:icon="@mipmap/ic_launcher"

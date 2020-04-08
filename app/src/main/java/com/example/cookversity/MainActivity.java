@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(f);
                     System.out.println("n");
                     return true;
-                case R.id.miMealPrep:
-                    f = new MealPrepFragment();
+                case R.id.miHome:
+                    f = new HomeFragment();
                     loadFragment(f);
                     System.out.println("mp");
                     return true;
