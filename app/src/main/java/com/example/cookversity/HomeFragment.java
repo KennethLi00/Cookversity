@@ -17,9 +17,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-//create home page like chatime app homepage by putting scrollview base then adding linear layout
-//then adding in textviews (set background images for textviews)
-//slightly transparent image background
 public class HomeFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
