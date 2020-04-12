@@ -126,10 +126,10 @@ public class QuizFragment extends Fragment {
         }
         Quiz quiz = list.get(position);
         tvTitle.setText(quiz.getTitle());
-        rbA.setText(quiz.getA());
-        rbB.setText(quiz.getB());
-        rbC.setText(quiz.getC());
-        rbD.setText(quiz.getD());
+        rbA.setText("A:"+quiz.getA());
+        rbB.setText("B:"+quiz.getB());
+        rbC.setText("C:"+quiz.getC());
+        rbD.setText("D:"+quiz.getD());
         Animation shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
         rbA.setAnimation(shake);
         rbB.setAnimation(shake);
