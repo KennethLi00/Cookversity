@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ViewFlipper
+            android:id="@+id/vfFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvLearnNutrition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/health"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="bottom"
+                android:text="- Learn about nutrition -"
+                android:textAlignment="center"
+                android:textColor="#E91E63"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTestYourself"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/quiz"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="bottom"
+                android:paddingHorizontal="5dp"
+                android:text="- Test your knowledge -"
+                android:textAlignment="center"
+                android:textColor="#FF9800"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvLearnRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/food"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="bottom"
+                android:paddingHorizontal="5dp"
+                android:text="- Learn new recipes -"
+                android:textAlignment="center"
+                android:textColor="#03A9F4"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </ViewFlipper>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
