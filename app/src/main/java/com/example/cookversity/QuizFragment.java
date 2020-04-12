@@ -2,6 +2,7 @@ package com.example.cookversity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -19,17 +20,20 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class QuizFragment extends Fragment {
     private View view;
     private TextView tvTitle;
-    private RadioButton rbA;
-    private RadioButton rbB;
-    private RadioButton rbC;
-    private RadioButton rbD;
+    private TextView rbA;
+    private TextView rbB;
+    private TextView rbC;
+    private TextView rbD;
     private ArrayList<Quiz> list;
-    private RadioGroup rgQuiz;
+
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -55,44 +59,66 @@ public class QuizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         list = Quiz.getQuizList();
         tvTitle = view.findViewById(R.id.tv_title);
-        rgQuiz = view.findViewById(R.id.rg_quiz);
         rbA = view.findViewById(R.id.rb_a);
         rbB = view.findViewById(R.id.rb_b);
         rbC = view.findViewById(R.id.rb_c);
         rbD = view.findViewById(R.id.rb_d);
         initQuestion();
-        rgQuiz.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        rbA.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onClick(View v) {
                 if (position==5){
                     showCorrect();
                     return;
                 }
                 Quiz quiz = list.get(position);
-                if (checkedId==R.id.rb_a){
-                   if (quiz.getOK().equals("a")){
-                       correctNu++;
-                   }
-                }else if (checkedId==R.id.rb_b){
-                    if (quiz.getOK().equals("b")){
-                        correctNu++;
-                    }
-                }else if (checkedId==R.id.rb_c){
-                    if (quiz.getOK().equals("c")){
-                        correctNu++;
-                    }
-                }else if (checkedId==R.id.rb_d){
-                    if (quiz.getOK().equals("d")){
-                        correctNu++;
-                    }
-                }
 
+                quiz.setAnswer("a");
                 position++;
                 initQuestion();
             }
         });
+        rbB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position==5){
+                    showCorrect();
+                    return;
+                }
+                Quiz quiz = list.get(position);
+                quiz.setAnswer("b");
+                position++;
+                initQuestion();
+            }
+        });
+        rbC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position==5){
+                    showCorrect();
+                    return;
+                }
+                Quiz quiz = list.get(position);
+                quiz.setAnswer("c");
+                position++;
+                initQuestion();
+            }
+        });
+        rbD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position==5){
+                    showCorrect();
+                    return;
+                }
+                Quiz quiz = list.get(position);
+                quiz.setAnswer("d");
+                position++;
+                initQuestion();
+            }
+        });
+
     }
-    int  correctNu=0;
     private void initQuestion() {
         if (position==5){
             showCorrect();
@@ -100,10 +126,10 @@ public class QuizFragment extends Fragment {
         }
         Quiz quiz = list.get(position);
         tvTitle.setText(quiz.getTitle());
-        rbA.setText("A."+quiz.getA());
-        rbB.setText("B."+quiz.getB());
-        rbC.setText("C."+quiz.getC());
-        rbD.setText("D."+quiz.getD());
+        rbA.setText(quiz.getA());
+        rbB.setText(quiz.getB());
+        rbC.setText(quiz.getC());
+        rbD.setText(quiz.getD());
         Animation shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
         rbA.setAnimation(shake);
         rbB.setAnimation(shake);
@@ -114,18 +140,16 @@ public class QuizFragment extends Fragment {
     private void showCorrect() {
         new AlertDialog.Builder(getActivity())
                 .setTitle("Tips")
-                .setMessage("Answer "+correctNu+" questions correctly")
+                .setMessage("View Results")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         position=0;
-                        correctNu=0;
-                        rbA.setChecked(false);
-                        rbB.setChecked(false);
-                        rbC.setChecked(false);
-                        rbD.setChecked(false);
                         initQuestion();
+                        Intent intent = new Intent(getActivity(),QuestionResultActivity.class);
+                        intent.putExtra("data",  list);
+                        startActivity(intent);
                     }
                 }).create().show();
     }

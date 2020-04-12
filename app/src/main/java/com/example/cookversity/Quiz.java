@@ -1,16 +1,26 @@
 package com.example.cookversity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Quiz {
+public class Quiz implements Serializable {
     private String title;
     private String A;
     private String B;
     private String C;
     private String D;
     private String OK;
+    private String answer;
 
-    public Quiz(String title, String a, String b, String c, String d,String ok) {
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public Quiz(String title, String a, String b, String c, String d, String ok) {
         this.title = title;
         A = a;
         B = b;
