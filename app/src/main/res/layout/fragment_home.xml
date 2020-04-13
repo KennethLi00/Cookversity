@@ -60,6 +60,37 @@
 
         </ViewFlipper>
 
+        <ImageView
+            android:id="@+id/ivCookingTip"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:src="@drawable/ic_tip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvCookingTip"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Cooking tip"
+            android:textAlignment="center"
+            android:textColor="#FFBB4D"
+            app:layout_constraintStart_toStartOf="@+id/ivCookingTip"
+            app:layout_constraintTop_toBottomOf="@+id/ivCookingTip" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Click on icons below to generate random cooking tips or recipes!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vfFlipper" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

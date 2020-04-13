@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView menu = findViewById(R.id.bnNavigation);
         menu.setOnNavigationItemSelectedListener(OnNavigationItemSelectedListener);
+        Fragment fragment = new HomeFragment();
+        loadFragment(fragment);
         System.out.println("1");
     }
 

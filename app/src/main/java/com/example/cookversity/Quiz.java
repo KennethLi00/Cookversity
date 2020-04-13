@@ -84,7 +84,7 @@ public class Quiz implements Serializable {
         list.add(new Quiz("How does adding salt to boiling water affect it?","Speeds up the process of boiling water.","It delays the process of water boiling.","Softens the water.","Stops the water from boiling at all.","b"));
         list.add(new Quiz("How can you determine if an egg has gone bad?","If it sinks to the bottom in a bowl of water and lays flat on its side.","If it floats to the surface in a bowl full of water.","Shake it to see if it rattles.","If it feels warm when you handle it.","b"));
         list.add(new Quiz("What is a measure of the energy you get from food?","Carbohydrates.","Fat.","Fiber.","Calorie.","d"));
-        list.add(new Quiz(" Which vitamin is important for eyesight?","Vitamin A."," Vitamin B."," Vitamin C."," Vitamin D.","a"));
+        list.add(new Quiz("Which vitamin is important for eyesight?","Vitamin A."," Vitamin B."," Vitamin C."," Vitamin D.","a"));
         return list;
     }
 
