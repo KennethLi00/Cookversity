@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //execute asynctask
-//                new GetRandomRecipeTask().execute();
+                new GetRandomRecipeTask().execute();
             }
         });
 
@@ -143,11 +143,11 @@ public class HomeFragment extends Fragment {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RecipeService service = retrofit.create(RecipeService.class);
-                Call<Recipe> recipeCall = service.getRandomRecipe();
-                Response<Recipe> recipeResponse = recipeCall.execute();
-                String r = recipeResponse.body().getTitle();
+                Call<RecipeResponse> recipeCall = service.getRandomRecipe();
+                Response<RecipeResponse> recipeResponse = recipeCall.execute();
+                String r = recipeResponse.body().getRecipes().get(0).getTitle();
                 System.out.println(r);
-                return recipeResponse.body();
+                return recipeResponse.body().getRecipes().get(0);
             } catch (IOException ex) {
                 System.out.println("failed");
                 ex.printStackTrace();
@@ -158,6 +158,7 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(Recipe recipe) {
             super.onPostExecute(recipe);
+            mRecipe = recipe;
         }
     }
 }
