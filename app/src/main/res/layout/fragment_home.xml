@@ -64,7 +64,7 @@
             android:id="@+id/ivCookingTip"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:clickable="true"
             android:src="@drawable/ic_tip"
@@ -75,7 +75,7 @@
             android:id="@+id/tvCookingTip"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="Cooking tip"
+            android:text="Cooking Tip"
             android:textAlignment="center"
             android:textColor="#FFBB4D"
             app:layout_constraintStart_toStartOf="@+id/ivCookingTip"
@@ -90,6 +90,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vfFlipper" />
+
+        <ImageView
+            android:id="@+id/ivRandomRecipe"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_random_recipe"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCookingTip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivCookingTip" />
+
+        <TextView
+            android:id="@+id/tvRandomRecipe"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Random Recipe"
+            android:textAlignment="center"
+            android:textColor="#FFBB4D"
+            app:layout_constraintStart_toStartOf="@+id/ivRandomRecipe"
+            app:layout_constraintTop_toBottomOf="@+id/ivRandomRecipe" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,16 +21,28 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.example.cookversity.Entities.Recipe;
+import com.example.cookversity.Entities.RecipeResponse;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
     private ViewFlipper viewFlipper;
     private Context mContext;
     private ImageView cookingTip;
+    private ImageView randomRecipe;
     private ArrayList<CookingTips> mlist;
+    public static final String ARG_ITEM_ID = "item_id";
+    private Recipe mRecipe;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -38,6 +51,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new GetRandomRecipeTask().execute();
     }
 
     @Override
@@ -46,8 +60,10 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //connect view flipper with view flipper in layout
+        //connect variables to UI elements in xml file
         viewFlipper = (ViewFlipper) root.findViewById(R.id.vfFlipper);
+        cookingTip = root.findViewById(R.id.ivCookingTip);
+        randomRecipe = root.findViewById(R.id.ivRandomRecipe);
 
         //getActivity provides context for fragments (https://stackoverflow.com/questions/8215308/using-context-in-a-fragment)
         mContext = getActivity();
@@ -64,11 +80,20 @@ public class HomeFragment extends Fragment {
         viewFlipper.setFlipInterval(3000);
         viewFlipper.setAutoStart(true);
 
-        cookingTip = root.findViewById(R.id.ivCookingTip);
+        //click cooking tip icon triggers display tip method
         cookingTip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayTip();
+            }
+        });
+
+        //click random recipe to get random recipe
+        randomRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //execute asynctask
+//                new GetRandomRecipeTask().execute();
             }
         });
 
@@ -105,5 +130,34 @@ public class HomeFragment extends Fragment {
         Random random = new Random();
         CookingTips result = mlist.get(random.nextInt(mlist.size()));
         return result.toString();
+    }
+
+    //asynctask class
+    private class GetRandomRecipeTask extends AsyncTask<Void, Void, Recipe> {
+
+        @Override
+        protected Recipe doInBackground(Void... voids) {
+            try {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api.spoonacular.com")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RecipeService service = retrofit.create(RecipeService.class);
+                Call<Recipe> recipeCall = service.getRandomRecipe();
+                Response<Recipe> recipeResponse = recipeCall.execute();
+                String r = recipeResponse.body().getTitle();
+                System.out.println(r);
+                return recipeResponse.body();
+            } catch (IOException ex) {
+                System.out.println("failed");
+                ex.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Recipe recipe) {
+            super.onPostExecute(recipe);
+        }
     }
 }
