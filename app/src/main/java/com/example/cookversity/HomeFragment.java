@@ -3,28 +3,41 @@ package com.example.cookversity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.StrictMode;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.cookversity.Entities.Recipe;
 import com.example.cookversity.Entities.RecipeResponse;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,8 +54,8 @@ public class HomeFragment extends Fragment {
     private ImageView cookingTip;
     private ImageView randomRecipe;
     private ArrayList<CookingTips> mlist;
-    public static final String ARG_ITEM_ID = "item_id";
     private Recipe mRecipe;
+    private Bitmap myBitmap;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -51,7 +64,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new GetRandomRecipeTask().execute();
     }
 
     @Override
@@ -97,14 +109,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+//      https://stackoverflow.com/questions/25093546/android-os-networkonmainthreadexception-at-android-os-strictmodeandroidblockgua
+//      Used code from stackoverflow to fix error
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         return root;
     }
 
-//    https://developer.android.com/guide/topics/ui/dialogs
-//    Used website to learn how to create dialogs
+//  https://developer.android.com/guide/topics/ui/dialogs
+//  Used website to learn how to create dialogs
     public void displayTip() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("Cooking Tip");
+        builder.setIcon(R.drawable.ic_tip);
         builder.setMessage(getRandomTip());
         builder.setPositiveButton("Another tip!", new DialogInterface.OnClickListener() {
             @Override
@@ -159,6 +178,49 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(Recipe recipe) {
             super.onPostExecute(recipe);
             mRecipe = recipe;
+            final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+
+//          https://stackoverflow.com/questions/18953632/how-to-set-image-from-url-for-imageview
+//          Used stack overflow code to get image from url from spoonacular api
+            try {
+                URL urlConnection = new URL("https://spoonacular.com/recipeImages/" + Integer.toString(mRecipe.getId()) + "-240x150.jpg");
+                HttpURLConnection connection = (HttpURLConnection) urlConnection
+                        .openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                myBitmap = BitmapFactory.decodeStream(input);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//          https://stackoverflow.com/questions/6276501/how-to-put-an-image-in-an-alertdialog-android
+//          Used to create image in dailog
+            ImageView image = new ImageView(mContext);
+            image.setImageBitmap(myBitmap);
+            builder.setView(image);
+
+            builder.setMessage(mRecipe.getTitle());
+            builder.setPositiveButton("Show recipe!", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    System.out.println("show recipe");
+                }
+            });
+            builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create();
+            AlertDialog dialog = builder.show();
+
+//          https://stackoverflow.com/questions/4954130/center-message-in-android-dialog-box/19026918
+//          Center dialog message
+            TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+            messageView.setGravity(Gravity.CENTER);
         }
     }
 }
