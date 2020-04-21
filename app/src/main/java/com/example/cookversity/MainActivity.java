@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void loadFragment(Fragment f) {
+    public void loadFragment(Fragment f) {
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
         t.replace(R.id.frameContainer, f);
         t.addToBackStack(null);
