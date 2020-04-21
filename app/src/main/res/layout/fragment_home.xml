@@ -6,111 +6,176 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ViewFlipper
-            android:id="@+id/vfFlipper"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
+
+            <ViewFlipper
+                android:id="@+id/vfFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvLearnNutrition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/health"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:gravity="bottom"
+                    android:text="- Learn about nutrition -"
+                    android:textAlignment="center"
+                    android:textColor="#E91E63"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTestYourself"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/quiz"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:gravity="bottom"
+                    android:paddingHorizontal="5dp"
+                    android:text="- Test your knowledge -"
+                    android:textAlignment="center"
+                    android:textColor="#FF9800"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvLearnRecipes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/food"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:gravity="bottom"
+                    android:paddingHorizontal="5dp"
+                    android:text="- Learn new recipes -"
+                    android:textAlignment="center"
+                    android:textColor="#03A9F4"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </ViewFlipper>
+
+            <ImageView
+                android:id="@+id/ivCookingTip"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_tip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
             <TextView
-                android:id="@+id/tvLearnNutrition"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/health"
-                android:fontFamily="@font/open_sans_semibold"
-                android:gravity="bottom"
-                android:text="- Learn about nutrition -"
+                android:id="@+id/tvCookingTip"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Cooking Tip"
                 android:textAlignment="center"
-                android:textColor="#E91E63"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#FFBB4D"
+                app:layout_constraintStart_toStartOf="@+id/ivCookingTip"
+                app:layout_constraintTop_toBottomOf="@+id/ivCookingTip" />
 
             <TextView
-                android:id="@+id/tvTestYourself"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/quiz"
-                android:fontFamily="@font/open_sans_semibold"
-                android:gravity="bottom"
-                android:paddingHorizontal="5dp"
-                android:text="- Test your knowledge -"
+                android:id="@+id/tvTitle"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Click on icons below to generate random cooking tips or recipes!"
                 android:textAlignment="center"
-                android:textColor="#FF9800"
-                android:textSize="20sp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vfFlipper" />
+
+            <ImageView
+                android:id="@+id/ivRandomRecipe"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="50dp"
+                android:clickable="true"
+                android:src="@drawable/ic_random_recipe"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCookingTip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivCookingTip" />
 
             <TextView
-                android:id="@+id/tvLearnRecipes"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/food"
-                android:fontFamily="@font/open_sans_semibold"
-                android:gravity="bottom"
-                android:paddingHorizontal="5dp"
-                android:text="- Learn new recipes -"
+                android:id="@+id/tvRandomRecipe"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Random Recipe"
                 android:textAlignment="center"
-                android:textColor="#03A9F4"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#FFBB4D"
+                app:layout_constraintStart_toStartOf="@+id/ivRandomRecipe"
+                app:layout_constraintTop_toBottomOf="@+id/ivRandomRecipe" />
 
-        </ViewFlipper>
+            <TextView
+                android:id="@+id/tvMoreInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Click for more information!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCookingTip" />
 
-        <ImageView
-            android:id="@+id/ivCookingTip"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="20dp"
-            android:clickable="true"
-            android:src="@drawable/ic_tip"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            <ImageView
+                android:id="@+id/ivMealPrep"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_meal_prep"
+                app:layout_constraintEnd_toEndOf="@+id/ivCookingTip"
+                app:layout_constraintStart_toStartOf="@+id/ivCookingTip"
+                app:layout_constraintTop_toBottomOf="@+id/tvMoreInfo" />
 
-        <TextView
-            android:id="@+id/tvCookingTip"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="Cooking Tip"
-            android:textAlignment="center"
-            android:textColor="#FFBB4D"
-            app:layout_constraintStart_toStartOf="@+id/ivCookingTip"
-            app:layout_constraintTop_toBottomOf="@+id/ivCookingTip" />
+            <ImageView
+                android:id="@+id/ivNutritionInfo"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:src="@drawable/ic_nutrition_info"
+                app:layout_constraintEnd_toEndOf="@+id/ivRandomRecipe"
+                app:layout_constraintStart_toStartOf="@+id/ivRandomRecipe"
+                app:layout_constraintTop_toTopOf="@+id/ivMealPrep" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Click on icons below to generate random cooking tips or recipes!"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vfFlipper" />
+            <TextView
+                android:id="@+id/tvMealPrepText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Meal Planning"
+                android:textAlignment="center"
+                android:textColor="#FFBB4D"
+                app:layout_constraintEnd_toEndOf="@+id/ivMealPrep"
+                app:layout_constraintStart_toStartOf="@+id/ivMealPrep"
+                app:layout_constraintTop_toBottomOf="@+id/ivMealPrep" />
 
-        <ImageView
-            android:id="@+id/ivRandomRecipe"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="50dp"
-            android:src="@drawable/ic_random_recipe"
-            app:layout_constraintBottom_toBottomOf="@+id/ivCookingTip"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ivCookingTip" />
-
-        <TextView
-            android:id="@+id/tvRandomRecipe"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="Random Recipe"
-            android:textAlignment="center"
-            android:textColor="#FFBB4D"
-            app:layout_constraintStart_toStartOf="@+id/ivRandomRecipe"
-            app:layout_constraintTop_toBottomOf="@+id/ivRandomRecipe" />
+            <TextView
+                android:id="@+id/tvNutritionText"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="Nutrition"
+                android:textAlignment="center"
+                android:textColor="#FFBB4D"
+                app:layout_constraintEnd_toEndOf="@+id/ivNutritionInfo"
+                app:layout_constraintStart_toStartOf="@+id/ivNutritionInfo"
+                app:layout_constraintTop_toBottomOf="@+id/ivNutritionInfo" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>

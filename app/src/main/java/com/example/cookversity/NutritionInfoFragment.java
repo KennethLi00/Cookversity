@@ -10,13 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CookbookFragment extends Fragment {
-//    private OnFragmentInteractionListener mListener;
+public class NutritionInfoFragment extends Fragment {
 
-    //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
-    //easy: buttons open up new activity
-    //hard: another menu to open up new activity
-    public CookbookFragment() {
+    public NutritionInfoFragment() {
         // Required empty public constructor
     }
 
@@ -29,6 +25,9 @@ public class CookbookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cookbook, container, false);
+        View root = inflater.inflate(R.layout.fragment_nutrition_info, container, false);
+
+        return root;
     }
+
 }

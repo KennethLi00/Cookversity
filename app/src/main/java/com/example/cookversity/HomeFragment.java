@@ -3,6 +3,7 @@ package com.example.cookversity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,6 +16,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,9 +55,15 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private ImageView cookingTip;
     private ImageView randomRecipe;
+    private TextView cookingTipText;
+    private TextView randomRecipeText;
     private ArrayList<CookingTips> mlist;
     private Recipe mRecipe;
     private Bitmap myBitmap;
+    private ImageView mealPlanIcon;
+    private TextView mealPlanText;
+    private ImageView nutritionIcon;
+    private TextView nutritionText;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -76,6 +84,12 @@ public class HomeFragment extends Fragment {
         viewFlipper = (ViewFlipper) root.findViewById(R.id.vfFlipper);
         cookingTip = root.findViewById(R.id.ivCookingTip);
         randomRecipe = root.findViewById(R.id.ivRandomRecipe);
+        cookingTipText = root.findViewById(R.id.tvCookingTip);
+        randomRecipeText = root.findViewById(R.id.tvRandomRecipe);
+        mealPlanIcon = root.findViewById(R.id.ivMealPrep);
+        mealPlanText = root.findViewById(R.id.tvMealPrepText);
+        nutritionIcon = root.findViewById(R.id.ivNutritionInfo);
+        nutritionText = root.findViewById(R.id.tvNutritionText);
 
         //getActivity provides context for fragments (https://stackoverflow.com/questions/8215308/using-context-in-a-fragment)
         mContext = getActivity();
@@ -92,8 +106,15 @@ public class HomeFragment extends Fragment {
         viewFlipper.setFlipInterval(3000);
         viewFlipper.setAutoStart(true);
 
-        //click cooking tip icon triggers display tip method
+        //click cooking tip icon and text triggers display tip method
         cookingTip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayTip();
+            }
+        });
+
+        cookingTipText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 displayTip();
@@ -106,6 +127,46 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //execute asynctask
                 new GetRandomRecipeTask().execute();
+            }
+        });
+
+        randomRecipeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new GetRandomRecipeTask().execute();
+            }
+        });
+        //click to show meal planning info
+        mealPlanIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment f = new MealPlanningFragment();
+                loadFragment(f);
+            }
+        });
+
+        mealPlanText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment f = new MealPlanningFragment();
+                loadFragment(f);
+            }
+        });
+
+        //click to show nutrition info
+        nutritionIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment f = new NutritionInfoFragment();
+                loadFragment(f);
+            }
+        });
+
+        nutritionText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment f = new NutritionInfoFragment();
+                loadFragment(f);
             }
         });
 
@@ -222,5 +283,12 @@ public class HomeFragment extends Fragment {
             TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
             messageView.setGravity(Gravity.CENTER);
         }
+    }
+
+    private void loadFragment(Fragment f) {
+        FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+        t.replace(R.id.frameContainer, f);
+        t.addToBackStack(null);
+        t.commit();
     }
 }

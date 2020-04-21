@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
-public class MealPrepFragment extends Fragment {
+public class MealPlanningFragment extends Fragment {
+    private WebView website;
 
-//    private OnFragmentInteractionListener mListener;
-
-    public MealPrepFragment() {
+    public MealPlanningFragment() {
         // Required empty public constructor
     }
 
@@ -27,6 +27,10 @@ public class MealPrepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meal_prep, container, false);
+        View root = inflater.inflate(R.layout.fragment_meal_planning, container, false);
+        website = root.findViewById(R.id.wvMealPlanning);
+        website.loadUrl("https://www.healthlinkbc.ca/healthy-eating/meal-planning");
+        return root;
     }
+
 }

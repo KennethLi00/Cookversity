@@ -12,8 +12,8 @@
         android:title="Recipes" />
     <item
         android:id="@+id/miNutrition"
-        android:icon="@drawable/ic_nutrition"
-        android:title="Nutrition" />
+        android:icon="@drawable/ic_ingredients"
+        android:title="Ingredients" />
     <item
         android:id="@+id/miCookbook"
         android:icon="@drawable/ic_food_diary"

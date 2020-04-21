@@ -6,22 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NutritionFragment">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="#F5BF7D"
         app:contentInsetStart="0dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="Ingredient Information"
             android:textColor="@color/white"
-            android:text="Nutrition"
             android:textSize="16sp" />
-
-
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -39,13 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:padding="20dp"
-            android:lineSpacingExtra="1.5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="@string/cook_tips"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
