@@ -61,6 +61,7 @@ public class CuisineAdapter extends RecyclerView.Adapter<CuisineAdapter.CuisineV
     public void onBindViewHolder(CuisineViewHolder holder, int position) {
         String c = CuisineList.get(position);
         holder.CuisineName.setText(c);
+        holder.itemView.setOnClickListener(mOnClickListener);
     }
 
     @Override
