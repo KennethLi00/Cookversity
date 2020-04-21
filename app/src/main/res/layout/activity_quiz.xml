@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#F5BF7D"
+        android:background="@color/colorPrimary"
         app:contentInsetStart="0dp">
 
         <TextView
@@ -23,41 +23,64 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textColor="#333333"/>
     <LinearLayout
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="120dp">
         <TextView
             android:id="@+id/rb_a"
             android:background="#B84145"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="QUIZ 1"
-            android:layout_height="80dp"/>
+            android:layout_height="match_parent"/>
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
             android:id="@+id/rb_b"
             android:background="#3C64BB"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="QUIZ 2"
-            android:layout_height="80dp"/>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/rb_c"
-            android:text="QUIZ 3"
-            android:background="#C09C48"
-            android:layout_width="match_parent"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_height="80dp"/>
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
 
+        <TextView
+            android:id="@+id/rb_c"
+            android:background="#C09C48"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_marginStart="20dp"
+            android:id="@+id/rb_d"
+            android:background="#528035"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </LinearLayout>

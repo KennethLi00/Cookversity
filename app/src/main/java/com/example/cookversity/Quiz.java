@@ -87,9 +87,30 @@ public class Quiz implements Serializable {
         list.add(new Quiz("Which vitamin is important for eyesight?","Vitamin A."," Vitamin B."," Vitamin C."," Vitamin D.","a"));
         return list;
     }
+    public static ArrayList<Quiz> getQuizList1(){
+        ArrayList<Quiz> list = new ArrayList<>();
+
+        list.add(new Quiz("What is the correct temperature that frozen food should be kept at?  ","0 degrees","15 degrees or lower","-18 degrees or lower","20 degrees or lower","c"));
+        list.add(new Quiz("Where should raw meat be stored in a refrigerator? ","At the top.","In the middle.","At the bottom, below all other food.","Put it on the ground","c"));
+        list.add(new Quiz("Which one of the following jewellery is acceptable for a food handler to wear?   ","Plain wedding band.","Arm ring","Bracelet ."," A ring that is a symbol of religious faith.","a"));
+        list.add(new Quiz("What is the ideal temperature for Pathogens to flourish?  ","10 degrees","37 degrees.","55 degrees.","90 degrees.","b"));
+        list.add(new Quiz("How many times can you reheat leftovers?  ","As many times as you like."," Twice. ","  Four times. "," You should only reheat leftovers once.","d"));
+        return list;
+    }
 
 
 
+
+    public static ArrayList<Quiz> getQuizList2(){
+        ArrayList<Quiz> list = new ArrayList<>();
+
+        list.add(new Quiz("Which of the following meats are safe to eat when they are pink or raw?","Chicken","Pork","Minced meat","Lamb","d"));
+        list.add(new Quiz("What are the basic steps for washing hands?","Wash thoroughly with water and dry.","It delays the process of water boiling.","Apply soap, wash thoroughly, rinse and use paper towels.","","b"));
+        list.add(new Quiz(" What is the reason for drying your hands after washing them?","Because germs and bacteria are more easily spread with wet hands.","Your hands are slippery when wet, and you will not be able to hold kitchen utensils properly.","If it feels warm when you handle it.","","b"));
+        list.add(new Quiz(" Which of the following is true about bacteria;"," Bacteria multiplies and grows faster in warm environments.","Bacteria needs air to survive.","Every type of bacteria can give people food poisoning..","By freezing food you can kill bacteria.","a"));
+        list.add(new Quiz("The ideal temperature in your fridge should be?","4 – 10 degrees","1 and 4 degrees.","0 to 4 degrees."," -2 to 0 degrees.","b"));
+        return list;
+    }
 
 
 }

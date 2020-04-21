@@ -27,12 +27,9 @@ import java.util.ArrayList;
 
 public class QuizFragment extends Fragment {
     private View view;
-    private TextView tvTitle;
     private TextView rbA;
     private TextView rbB;
     private TextView rbC;
-    private TextView rbD;
-    private ArrayList<Quiz> list;
 
 
 //    private OnFragmentInteractionListener mListener;
@@ -57,100 +54,35 @@ public class QuizFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        list = Quiz.getQuizList();
-        tvTitle = view.findViewById(R.id.tv_title);
         rbA = view.findViewById(R.id.rb_a);
         rbB = view.findViewById(R.id.rb_b);
         rbC = view.findViewById(R.id.rb_c);
-        rbD = view.findViewById(R.id.rb_d);
-        initQuestion();
         rbA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position==5){
-                    showCorrect();
-                    return;
-                }
-                Quiz quiz = list.get(position);
-
-                quiz.setAnswer("a");
-                position++;
-                initQuestion();
+                Intent intent = new Intent(getActivity(),QuizActivity.class);
+                intent.putExtra("position",  0);
+                startActivity(intent);
             }
         });
         rbB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position==5){
-                    showCorrect();
-                    return;
-                }
-                Quiz quiz = list.get(position);
-                quiz.setAnswer("b");
-                position++;
-                initQuestion();
+                Intent intent = new Intent(getActivity(),QuizActivity.class);
+                intent.putExtra("position",  1);
+                startActivity(intent);
             }
         });
         rbC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position==5){
-                    showCorrect();
-                    return;
-                }
-                Quiz quiz = list.get(position);
-                quiz.setAnswer("c");
-                position++;
-                initQuestion();
-            }
-        });
-        rbD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (position==5){
-                    showCorrect();
-                    return;
-                }
-                Quiz quiz = list.get(position);
-                quiz.setAnswer("d");
-                position++;
-                initQuestion();
+                Intent intent = new Intent(getActivity(),QuizActivity.class);
+                intent.putExtra("position",  2);
+                startActivity(intent);
             }
         });
 
-    }
-    private void initQuestion() {
-        if (position==5){
-            showCorrect();
-            return;
-        }
-        Quiz quiz = list.get(position);
-        tvTitle.setText(quiz.getTitle());
-        rbA.setText("A:"+quiz.getA());
-        rbB.setText("B:"+quiz.getB());
-        rbC.setText("C:"+quiz.getC());
-        rbD.setText("D:"+quiz.getD());
-        Animation shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
-        rbA.setAnimation(shake);
-        rbB.setAnimation(shake);
-        rbC.setAnimation(shake);
-        rbD.setAnimation(shake);
+
     }
 
-    private void showCorrect() {
-        new AlertDialog.Builder(getActivity())
-                .setTitle("Tips")
-                .setMessage("View Results")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        position=0;
-                        initQuestion();
-                        Intent intent = new Intent(getActivity(),QuestionResultActivity.class);
-                        intent.putExtra("data",  list);
-                        startActivity(intent);
-                    }
-                }).create().show();
-    }
 }
