@@ -105,8 +105,8 @@ public class Quiz implements Serializable {
         ArrayList<Quiz> list = new ArrayList<>();
 
         list.add(new Quiz("Which of the following meats are safe to eat when they are pink or raw?","Chicken","Pork","Minced meat","Lamb","d"));
-        list.add(new Quiz("What are the basic steps for washing hands?","Wash thoroughly with water and dry.","It delays the process of water boiling.","Apply soap, wash thoroughly, rinse and use paper towels.","","b"));
-        list.add(new Quiz(" What is the reason for drying your hands after washing them?","Because germs and bacteria are more easily spread with wet hands.","Your hands are slippery when wet, and you will not be able to hold kitchen utensils properly.","If it feels warm when you handle it.","","b"));
+        list.add(new Quiz("What are the basic steps for washing hands?","Wash thoroughly with water and dry.","It delays the process of water boiling.","Apply soap, wash thoroughly, rinse and use paper towels.","Use nothing","b"));
+        list.add(new Quiz(" What is the reason for drying your hands after washing them?","Because germs and bacteria are more easily spread with wet hands.","Your hands are slippery when wet, and you will not be able to hold kitchen utensils properly.","If it feels warm when you handle it.","Feel nothing","b"));
         list.add(new Quiz(" Which of the following is true about bacteria;"," Bacteria multiplies and grows faster in warm environments.","Bacteria needs air to survive.","Every type of bacteria can give people food poisoning..","By freezing food you can kill bacteria.","a"));
         list.add(new Quiz("The ideal temperature in your fridge should be?","4 – 10 degrees","1 and 4 degrees.","0 to 4 degrees."," -2 to 0 degrees.","b"));
         return list;
