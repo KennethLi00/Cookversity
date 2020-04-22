@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -64,6 +65,7 @@ public class HomeFragment extends Fragment {
     private TextView mealPlanText;
     private ImageView nutritionIcon;
     private TextView nutritionText;
+    private ProgressBar progressBar;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -91,6 +93,8 @@ public class HomeFragment extends Fragment {
         nutritionIcon = root.findViewById(R.id.ivNutritionInfo);
         nutritionText = root.findViewById(R.id.tvNutritionText);
 
+        progressBar = root.findViewById(R.id.loading);
+        progressBar.setVisibility(View.INVISIBLE);
         //getActivity provides context for fragments (https://stackoverflow.com/questions/8215308/using-context-in-a-fragment)
         mContext = getActivity();
 
@@ -127,6 +131,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //execute asynctask
                 new GetRandomRecipeTask().execute();
+                root.findViewById(R.id.loading).setVisibility(View.VISIBLE);
             }
         });
 
@@ -134,6 +139,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 new GetRandomRecipeTask().execute();
+                root.findViewById(R.id.loading).setVisibility(View.VISIBLE);
             }
         });
         //click to show meal planning info
@@ -261,7 +267,7 @@ public class HomeFragment extends Fragment {
             ImageView image = new ImageView(mContext);
             image.setImageBitmap(myBitmap);
             builder.setView(image);
-
+            progressBar.setVisibility(View.INVISIBLE);
             builder.setMessage(mRecipe.getTitle());
             builder.setPositiveButton("Show recipe!", new DialogInterface.OnClickListener() {
                 @Override

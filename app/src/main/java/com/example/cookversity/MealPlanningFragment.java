@@ -2,6 +2,7 @@ package com.example.cookversity;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,5 +33,4 @@ public class MealPlanningFragment extends Fragment {
         website.loadUrl("https://www.healthlinkbc.ca/healthy-eating/meal-planning");
         return root;
     }
-
 }
