@@ -4,18 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CookbookFragment extends Fragment {
-//    private OnFragmentInteractionListener mListener;
+import com.google.android.material.tabs.TabLayout;
 
-    //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
-    //easy: buttons open up new activity
-    //hard: another menu to open up new activity
+//public class CookbookFragment extends Fragment implements NotesFragment.OnFragmentInteractionListener, ShoppingListFragment.OnFragmentInteractionListener, SavedRecipesFragment.OnFragmentInteractionListener{
+public class CookbookFragment extends Fragment {
+private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private MyPagerAdapter adapter;
+
+//    https://developer.android.com/training/basics/fragments/communicating.html
+//    https://stackoverflow.com/questions/41413150/fragment-tabs-inside-fragment
     public CookbookFragment() {
         // Required empty public constructor
     }
@@ -23,12 +30,26 @@ public class CookbookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cookbook, container, false);
+        View root = inflater.inflate(R.layout.fragment_cookbook, container, false);
+        tabLayout = root.findViewById(R.id.tlTabs);
+        viewPager = root.findViewById(R.id.vpPager);
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        return root;
+    }
+
+    private void setUpViewPager(ViewPager viewPager) {
+        adapter = new MyPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new NotesFragment(), "Notes");
+        adapter.addFragment(new ShoppingListFragment(), "Grocery List");
+        adapter.addFragment(new SavedRecipesFragment(), "My Recipes");
+        viewPager.setAdapter(adapter);
     }
 }

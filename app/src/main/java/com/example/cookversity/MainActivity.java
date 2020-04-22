@@ -6,15 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NotesFragment.OnFragmentInteractionListener, ShoppingListFragment.OnFragmentInteractionListener, SavedRecipesFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,5 +67,15 @@ public class MainActivity extends AppCompatActivity {
         t.replace(R.id.frameContainer, f);
         t.addToBackStack(null);
         t.commit();
+    }
+
+    @Override
+    public void onArticleSelected(int position) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

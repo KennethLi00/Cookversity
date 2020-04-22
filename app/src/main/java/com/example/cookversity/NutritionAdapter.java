@@ -10,12 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 import java.util.List;
 
+//https://www.youtube.com/watch?v=69C1ljfDvl0
+//Used video to help implement adapter class
 public class NutritionAdapter extends  RecyclerView.Adapter<NutritionAdapter.ViewHolder> {
-    private FragmentActivity main;
     private List<Nutrition> mList;
     private OnWebListener listener;
 
@@ -59,6 +58,7 @@ public class NutritionAdapter extends  RecyclerView.Adapter<NutritionAdapter.Vie
             listener.onWebListener(getAdapterPosition());
         }
     }
+
     public interface OnWebListener {
         void onWebListener(int position);
     }
