@@ -14,7 +14,7 @@ import java.util.List;
 
 //https://www.youtube.com/watch?v=69C1ljfDvl0
 //Used video to help implement adapter class
-public class NutritionAdapter extends  RecyclerView.Adapter<NutritionAdapter.ViewHolder> {
+public class NutritionAdapter extends RecyclerView.Adapter<NutritionAdapter.ViewHolder> {
     private List<Nutrition> mList;
     private OnWebListener listener;
 

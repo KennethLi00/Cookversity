@@ -15,11 +15,16 @@ import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
+import java.util.List;
+
 //public class CookbookFragment extends Fragment implements NotesFragment.OnFragmentInteractionListener, ShoppingListFragment.OnFragmentInteractionListener, SavedRecipesFragment.OnFragmentInteractionListener{
 public class CookbookFragment extends Fragment {
 private TabLayout tabLayout;
     private ViewPager viewPager;
     private MyPagerAdapter adapter;
+//    private ShoppingListFragment mMyFragment;
+//    private List<String> data;
 
 //    https://developer.android.com/training/basics/fragments/communicating.html
 //    https://stackoverflow.com/questions/41413150/fragment-tabs-inside-fragment
@@ -31,6 +36,7 @@ private TabLayout tabLayout;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
     }
 
     @Override
@@ -52,4 +58,12 @@ private TabLayout tabLayout;
         adapter.addFragment(new SavedRecipesFragment(), "My Recipes");
         viewPager.setAdapter(adapter);
     }
+//
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+////        outState.putSerializable("list", (Serializable) data);
+////       getActivity().getSupportFragmentManager().putFragment(outState, "ShoppingListFragment", mMyFragment);
+//    }
+
 }
