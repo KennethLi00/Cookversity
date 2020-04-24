@@ -56,6 +56,7 @@ private TabLayout tabLayout;
         adapter.addFragment(new NotesFragment(), "Notes");
         adapter.addFragment(new ShoppingListFragment(), "Grocery List");
         adapter.addFragment(new SavedRecipesFragment(), "My Recipes");
+        adapter.addFragment(new CleanAllFragment(), "Clean All");
         viewPager.setAdapter(adapter);
     }
 //

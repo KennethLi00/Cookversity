@@ -67,13 +67,12 @@ public class ShoppingListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_shopping_list, container, false);
-        readData();
         mList = root.findViewById(R.id.lvShoppingList);
         addButton = root.findViewById(R.id.btAddShoppingItem);
         input = root.findViewById(R.id.etNewShoppingItem);
         layout = root.findViewById(R.id.clShoppingList);
 
-        items = new ArrayList<>();
+        readData();
         itemsAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
         mList.setAdapter(itemsAdapter);
 
@@ -81,6 +80,7 @@ public class ShoppingListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = input.getText().toString();
+                if (text.isEmpty()) {return;}
                 itemsAdapter.add(text);
                 input.setText("");
                 writeData();

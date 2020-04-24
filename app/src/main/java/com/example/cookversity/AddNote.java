@@ -34,7 +34,11 @@ public class AddNote extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveNote(userInput.getText().toString());
+                String content = userInput.getText().toString().split("\n")[0];
+                if (content == null || content.length() < 1) {return;}
+                SaveNote(content.substring(0,
+                        Math.min(20, content.length())));
+                setResult(1);
                 finish();
             }
         });

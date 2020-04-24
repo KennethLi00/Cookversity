@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
@@ -66,10 +68,11 @@ public class NotesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AddNote.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
+        notesList = new ArrayList<>();
         adapter = new NotesAdapter(notesList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -80,7 +83,6 @@ public class NotesFragment extends Fragment {
 
         return root;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -99,9 +101,20 @@ public class NotesFragment extends Fragment {
         mListener = null;
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        prepareNotes();
+    }
+
     public interface OnFragmentInteractionListener {
         public void onArticleSelected(int position);
     }
+
+
+
+
 
     public void setmListener(OnFragmentInteractionListener listener) {
         this.mListener = listener;
@@ -115,9 +128,10 @@ public class NotesFragment extends Fragment {
         if (notesList == null) {
             SkipPrepare();
         } else {
+            notesList.clear();
             for(File f : files) {
-                theFile = "Note" + f + ".txt";
-                NotesBuilder note = new NotesBuilder(theFile, Open(theFile));
+                theFile = "Note " + f.getName() + ".txt";
+                NotesBuilder note = new NotesBuilder(theFile, Open(f.getName()));
                 notesList.add(note);
             }
 //            for (int f = 1; f && notesList.size() == files.length; f++) {
