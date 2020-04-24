@@ -2,6 +2,7 @@ package com.example.cookversity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -34,11 +35,15 @@ public class AddNote extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content = userInput.getText().toString().split("\n")[0];
-                if (content == null || content.length() < 1) {return;}
-                SaveNote(content.substring(0,
-                        Math.min(20, content.length())));
-                setResult(1);
+                String title = userInput.getText().toString().split("\n")[0];
+                if (title == null || title.length() < 1) {return;}
+                title = title.substring(0,
+                        Math.min(20, title.length()));
+                SaveNote(title);
+                Intent intent = new Intent();
+                intent.putExtra("title", title);
+                intent.putExtra("content", userInput.getText().toString());
+                setResult(1, intent);
                 finish();
             }
         });

@@ -105,7 +105,9 @@ public class NotesFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        notesList.add(new NotesBuilder(data.getExtras().getString("title"), data.getExtras().getString("content")));
         prepareNotes();
+        adapter.notifyDataSetChanged();
     }
 
     public interface OnFragmentInteractionListener {
