@@ -30,7 +30,7 @@ public class QuestionResultActivity extends AppCompatActivity {
     protected void initData() {
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Result");
+        toolbar.setTitle("RecipeShort");
         recyclerView = findViewById(R.id.recyclerView);
         list = (List<Quiz>) getIntent().getSerializableExtra("data");
         adapter = new QuestionAdapter(this,  list);

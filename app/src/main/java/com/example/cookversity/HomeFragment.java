@@ -51,7 +51,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
-//    private OnFragmentInteractionListener mListener;
+    //    private OnFragmentInteractionListener mListener;
     private ViewFlipper viewFlipper;
     private Context mContext;
     private ImageView cookingTip;
@@ -185,7 +185,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-//  https://developer.android.com/guide/topics/ui/dialogs
+    //  https://developer.android.com/guide/topics/ui/dialogs
 //  Used website to learn how to create dialogs
     public void displayTip() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -233,7 +233,13 @@ public class HomeFragment extends Fragment {
                 Response<RecipeResponse> recipeResponse = recipeCall.execute();
                 String r = recipeResponse.body().getRecipes().get(0).getTitle();
                 System.out.println(r);
-                return recipeResponse.body().getRecipes().get(0);
+                Recipe recipe = recipeResponse.body().getRecipes().get(0);
+                System.out.println(recipe.getExtendedIngredients().get(2).getAmount() + " " + recipe.getExtendedIngredients().get(2).getUnit() + "(s) " + recipe.getExtendedIngredients().get(2).getName());
+                System.out.println(recipe.getServings());
+                System.out.println(recipe.getReadyInMinutes());
+                System.out.println(recipe.getInstructions());
+                System.out.println(recipe.getSourceUrl());
+                return recipe;
             } catch (IOException ex) {
                 System.out.println("failed");
                 ex.printStackTrace();
@@ -286,7 +292,7 @@ public class HomeFragment extends Fragment {
 
 //          https://stackoverflow.com/questions/4954130/center-message-in-android-dialog-box/19026918
 //          Center dialog message
-            TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
             messageView.setGravity(Gravity.CENTER);
         }
     }
