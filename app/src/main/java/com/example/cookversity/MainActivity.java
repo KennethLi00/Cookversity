@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NotesFragment.OnFragmentInteractionListener, ShoppingListFragment.OnFragmentInteractionListener, SavedRecipesFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements NotesFragment.OnFragmentInteractionListener, ShoppingListFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

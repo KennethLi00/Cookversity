@@ -1,5 +1,6 @@
 package com.example.cookversity;
 
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,11 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
     private List<NotesBuilder> mList;
-//    private onNoteListener listener;
 
     @NonNull
     @Override
     public NotesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list_row, parent, false);
-
         return new ViewHolder(v);
     }
 
@@ -52,5 +51,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public NotesAdapter (List<NotesBuilder> list) {
         this.mList = list;
+    }
+
+    public void setNotes(List<NotesBuilder> notes) {
+        mList.addAll(notes);
+        notifyDataSetChanged();
     }
 }
