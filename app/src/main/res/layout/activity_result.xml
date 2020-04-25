@@ -9,7 +9,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5BF7D" />
+        android:background="#F5BF7D"
+        app:titleTextColor="#FFFFFF" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
