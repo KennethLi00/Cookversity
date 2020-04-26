@@ -95,10 +95,17 @@ public class RecipeDetailFragment extends Fragment {
             String ins = "";
             ingredients.setText(ing);
             int num = 1;
-            for (Step i : recipe.getAnalyzedInstructions().get(0).getSteps()) {
-                ins = ins + num + ". " + i.getStep() + "\n" + "\n";
-                num++;
+            System.out.println(recipe.getInstructions());
+            try {
+                for (Step i : recipe.getAnalyzedInstructions().get(0).getSteps()) {
+                    ins = ins + num + ". " + i.getStep() + "\n" + "\n";
+                    num++;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                ins = "no instructions";
             }
+
+
             instructions.setText(ins);
         }
     }

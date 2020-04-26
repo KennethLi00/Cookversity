@@ -16,6 +16,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +67,7 @@ public class HomeFragment extends Fragment {
     private ImageView nutritionIcon;
     private TextView nutritionText;
     private ProgressBar progressBar;
+    private FragmentActivity frag;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -279,6 +281,13 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     System.out.println("show recipe");
+                    Bundle arguments = new Bundle();
+                    arguments.putInt(RecipeDetailFragment.RECIPE_ID, mRecipe.getId());
+                    RecipeDetailFragment fragment = new RecipeDetailFragment();
+                    fragment.setArguments(arguments);
+                    FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+                    t.addToBackStack(null);
+                    t.replace(R.id.frameContainer, fragment).commit();
                 }
             });
             builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {

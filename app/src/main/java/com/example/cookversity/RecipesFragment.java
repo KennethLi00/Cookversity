@@ -69,7 +69,7 @@ public class RecipesFragment extends Fragment {
 //                t.commit();
 //            }
 //        };
-        cAdapter = new CuisineAdapter(getActivity(), getCuisines());
+        cAdapter = new CuisineAdapter(getActivity(), getCuisines(), getContext());
         rv.setAdapter(cAdapter);
         return v;
     }
