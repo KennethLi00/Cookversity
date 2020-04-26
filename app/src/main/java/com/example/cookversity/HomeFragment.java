@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment {
 
         progressBar = root.findViewById(R.id.loading);
         progressBar.setVisibility(View.INVISIBLE);
+
         //getActivity provides context for fragments (https://stackoverflow.com/questions/8215308/using-context-in-a-fragment)
         mContext = getActivity();
 
@@ -263,7 +264,7 @@ public class HomeFragment extends Fragment {
             }
 
 //          https://stackoverflow.com/questions/6276501/how-to-put-an-image-in-an-alertdialog-android
-//          Used to create image in dailog
+//          Used to create image in dialog
             ImageView image = new ImageView(mContext);
             image.setImageBitmap(myBitmap);
             builder.setView(image);
