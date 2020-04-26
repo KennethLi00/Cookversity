@@ -18,6 +18,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+//https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+//Used code from link to help build notes section
+
 public class AddNote extends AppCompatActivity {
     private ImageView save;
     private EditText userInput;
@@ -35,6 +38,8 @@ public class AddNote extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+                //Modified code from link to save notes to phone storage through intents
                 String title = userInput.getText().toString().split("\n")[0];
                 if (title == null || title.length() < 1) {return;}
                 title = title.substring(0,
@@ -48,14 +53,16 @@ public class AddNote extends AppCompatActivity {
             }
         });
 
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
+    //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+    //Used code to save notes
     public void SaveNote(String fileName) {
         try {
             OutputStreamWriter out =
@@ -68,11 +75,15 @@ public class AddNote extends AppCompatActivity {
         }
     }
 
+    //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+    //Used code to find if file exists
     public boolean FileExists(String fname){
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();
     }
 
+    //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+    //Used code to open files and load to list
     public String Open(String fileName) {
         String content = "";
         if (FileExists(fileName)) {

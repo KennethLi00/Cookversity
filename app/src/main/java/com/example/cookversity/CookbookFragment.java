@@ -55,16 +55,8 @@ private TabLayout tabLayout;
         adapter = new MyPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new NotesFragment(), "Notes");
         adapter.addFragment(new ShoppingListFragment(), "Grocery List");
-        adapter.addFragment(new SavedRecipesFragment(), "My Recipes");
         adapter.addFragment(new CleanAllFragment(), "Clean All");
         viewPager.setAdapter(adapter);
     }
-//
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-////        outState.putSerializable("list", (Serializable) data);
-////       getActivity().getSupportFragmentManager().putFragment(outState, "ShoppingListFragment", mMyFragment);
-//    }
 
 }

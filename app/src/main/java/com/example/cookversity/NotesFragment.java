@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/
+//Used this to help build the notes section (built in opposite order to the code in the link
 public class NotesFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private List<NotesBuilder> notesList;
@@ -122,6 +123,7 @@ public class NotesFragment extends Fragment {
         this.mListener = listener;
     }
 
+    //Used code from link to get notes into list (https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/)
     private void prepareNotes() {
         File directory = getActivity().getFilesDir();
         File[] files = directory.listFiles();
@@ -136,11 +138,6 @@ public class NotesFragment extends Fragment {
                 NotesBuilder note = new NotesBuilder(theFile, Open(f.getName()));
                 notesList.add(note);
             }
-//            for (int f = 1; f && notesList.size() == files.length; f++) {
-//                theFile = "Note" + f + ".txt";
-//                NotesBuilder note = new NotesBuilder(theFile, Open(theFile));
-//                notesList.add(note);
-//            }
         }
     }
 
@@ -148,6 +145,7 @@ public class NotesFragment extends Fragment {
         System.out.println("skipped");
     }
 
+    //Used code from link to open notes(https://www.androidauthority.com/lets-build-a-simple-text-editor-for-android-773774/)
     public String Open(String fileName) {
         String content = "";
         try {
